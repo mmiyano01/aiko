@@ -1,9 +1,9 @@
 {
-  "name": "aiko",
+  "name": "aiko-mk2",
   "version": "0.0.0",
   "private": true,
   "author": "Masato Miyano",
-  "description": "A simple helpful robot for your Company",
+  "description": "She is back.",
   "dependencies": {
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.1",
