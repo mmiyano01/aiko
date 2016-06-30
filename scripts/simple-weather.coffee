@@ -4,7 +4,7 @@ LineTextAction, LineImageAction, LineVideoAction, LineAudioAction, LineLocationA
 } = require 'hubot-line'
 
 module.exports = (robot) ->
-  robot.hear /(.*)\'s weather/i, (msg) ->
+  robot.hear /weather (.*)/i, (msg) ->
     switch msg.match[1]
       when 'today'
         day = 0
