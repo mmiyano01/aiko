@@ -1,3 +1,8 @@
+{LineRawMessageListener, LineImageListener, LineVideoListener, LineAudioListener, LineLocationListener,
+LineStickerListener, LineContactListener, LineRawOperationListener, LineFriendListener, LineBlockListener,
+LineTextAction, LineImageAction, LineVideoAction, LineAudioAction, LineLocationAction, LineStickerAction
+} = require 'hubot-line'
+
 module.exports = (robot) ->
   robot.hear /(.*)\'s weather/i, (msg) ->
     switch msg.match[1]
