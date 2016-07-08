@@ -4,5 +4,14 @@ LineTextAction, LineImageAction, LineVideoAction, LineAudioAction, LineLocationA
 } = require 'hubot-line'
 
 module.exports = (robot) ->
-  robot.hear /hello/i, (msg) ->
-    msg.send "HI! " + msg.message.displayName + msg.message.name + msg.message.name.displayName + msg.message.user.displayName + msg.message.user.name + msg.message.user_name
+  robot.hear /hello1/i, (msg) ->
+    msg.send "HI! " + msg.displayName
+  robot.hear /hello2/i, (msg) ->
+    msg.send "HI! " + msg.message.displayName
+  robot.hear /hello3/i, (msg) ->
+    msg.send "HI! " + msg.message.user.username
+  robot.hear /hello4/i, (msg) ->
+    msg.send "HI! " + msg.message.user.user_name
+  robot.hear /hello5/i, (msg) ->
+    msg.send "HI! " + msg.message.user.name
+
