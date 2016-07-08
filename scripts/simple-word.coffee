@@ -5,4 +5,4 @@ LineTextAction, LineImageAction, LineVideoAction, LineAudioAction, LineLocationA
 
 module.exports = (robot) ->
   robot.hear /hello/i, (msg) ->
-    msg.send "HI! " + msg.message.displayName + msg.message.name + msg.message.name.displayName + msg.message.user.displayName + msg.message.user.name + msg.send msg.message.user_name
+    msg.send "HI! " + msg.message.displayName + msg.message.name + msg.message.name.displayName + msg.message.user.displayName + msg.message.user.name + msg.message.user_name
