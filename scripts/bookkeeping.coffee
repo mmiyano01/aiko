@@ -4,7 +4,7 @@ LineTextAction, LineImageAction, LineVideoAction, LineAudioAction, LineLocationA
 } = require 'hubot-line'
 
 module.exports = (robot) ->
- robot.hear /add expense (.*) (.*)/i, (msg) ->
+ robot.hear /add expense (.*) (.*) (.*)/i, (msg) ->
     @exec = require('child_process').exec
     command = "sh scripts/shell/auth.sh #{msg.message.user.name}"
     @exec command, (error, stdout) ->
@@ -12,8 +12,8 @@ module.exports = (robot) ->
       msg.send "auth failed. try again" if error?
       
       @exec = require('child_process').exec
-      command = "sh scripts/shell/add_expense.sh #{reporter} #{msg.match[1]} #{msg.match[2]}"
+      command = "sh scripts/shell/add_expense.sh #{reporter} #{msg.match[1]} #{msg.match[2]} #{msg.match[3]}"
       @exec command, (error, stdout) ->
         msg.send error if error?
-        msg.send "money money money!" if stdout? 
+        msg.send "expense record added! ...ouch!" if stdout?
 
