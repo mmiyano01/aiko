@@ -1,2 +1,2 @@
 #!/bin/bash
-heroku pg:psql --app aiko-mk2 DATABASE -c "SELECT user_name FROM admin_users WHERE mid = '$1';"
+PGPASSWORD=eT9dCTZO4N9jdFMvw_oOp_gAYY psql -h ec2-107-22-250-212.compute-1.amazonaws.com -U zoamztsgjzuifs -d dckfchnkl0i3dj -c "SELECT user_name FROM admin_users WHERE mid = '$1';"
