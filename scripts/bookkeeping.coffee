@@ -31,21 +31,21 @@ module.exports = (robot) ->
      year = d.getFullYear()
 
      command_m = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} Masato"
-     @exec command_m, (error, stdout) ->
-       ttl_m = stdout.replace(/\s/g, "");
+     @exec command_m, (error, stdout_m) ->
+       ttl_m = stdout_m.replace(/\s/g, "");
        msg.send error if error?
-       msg.send "Masato: #{ttl_m}" if stdout?
+       msg.send "Masato: #{ttl_m}" if stdout_m?
        @exec = require('child_process').exec
     
        command_n = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} Nina"
-       @exec command_n, (error, stdout) ->
-         ttl_n = stdout.replace(/\s/g, "");
+       @exec command_n, (error, stdout_n) ->
+         ttl_n = stdout_n.replace(/\s/g, "");
          msg.send error if error?
-         msg.send "Nina: #{ttl_n}" if stdout?
+         msg.send "Nina: #{ttl_n}" if stdout_n?
          @exec = require('child_process').exec
          
          command_e = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} even"
-         @exec command_e, (error, stdout) ->
-           ttl_e = stdout.replace(/\s/g, "");
+         @exec command_e, (error, stdout_e) ->
+           ttl_e = stdout_e.replace(/\s/g, "");
            msg.send error if error?
-           msg.send "Even: #{ttl_e}" if stdout?
+           msg.send "Even: #{ttl_e}" if stdout_e?
