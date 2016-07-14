@@ -34,9 +34,8 @@ module.exports = (robot) ->
      @exec command_m, (error, stdout_m) ->
        array_m = stdout_m.split(/\r\n|\r|\n/)
        ttl_m = 0
-       for (i = 0; i < array_m.length; i++) {
+       for i in [0..array_m.length-1]
          ttl_m = array_m[i] + ttl_m
-       }
        msg.send error if error?
        msg.send "Masato: #{ttl_m}" if stdout_m?
        @exec = require('child_process').exec
@@ -45,9 +44,8 @@ module.exports = (robot) ->
        @exec command_n, (error, stdout_n) ->
          array_n = stdout_n.split(/\r\n|\r|\n/)
          ttl_n = 0
-         for (i = 0; i < array_n.length; i++) {
+         for i in [0..array_n.length-1]
            ttl_n = array_n[i] + ttl_n
-         }
          msg.send error if error?
          msg.send "Nina: #{ttl_n}" if stdout_n?
          @exec = require('child_process').exec
