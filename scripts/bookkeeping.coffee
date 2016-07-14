@@ -32,7 +32,7 @@ module.exports = (robot) ->
 
      command_m = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Masato Nina"
      @exec command_m, (error, stdout_m) ->
-       array_m = stdout_m.split(/\n/)
+       array_m = stdout_m.split(/\n/).replace(/\s/g, "")
        ttl_m = 0
        for i in [0..array_m.length-1]
          ttl_m = array_m[i] + ttl_m
@@ -42,7 +42,7 @@ module.exports = (robot) ->
     
        command_n = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Nina Masato"
        @exec command_n, (error, stdout_n) ->
-         array_n = stdout_n.split(/\n/)
+         array_n = stdout_n.split(/\n/).replace(/\s/g, "")
          ttl_n = 0
          for i in [0..array_n.length-1]
            ttl_n = array_n[i] + ttl_n
