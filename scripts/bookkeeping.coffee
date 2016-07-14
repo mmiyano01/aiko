@@ -27,5 +27,5 @@ module.exports = (robot) ->
      @exec = require('child_process').exec
      command = "sh scripts/shell/show_expense.sh"
      @exec command, (error, stdout) ->
-      msg.send error if error?
-      msg.send stdout if stdout?
+       msg.send error if error?
+       msg.send stdout if stdout?
