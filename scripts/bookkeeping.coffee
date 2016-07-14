@@ -32,20 +32,20 @@ module.exports = (robot) ->
 
      command_m = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Masato Nina"
      @exec command_m, (error, stdout_m) ->
-       array_m = stdout_m.match(/\D\d+\D/)
+       array_m = stdout_m.match(/\n/)
        ttl_m = 0
        for i in [0..array_m.length-1]
-         ttl_m = array_m[i] + ttl_m
+         ttl_m = array_m[i] + ttl_m if array_m[i].match(/\d+/) 
        msg.send error if error?
        msg.send "Masato: #{array_m}" if stdout_m?
        @exec = require('child_process').exec
     
        command_n = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Nina Masato"
        @exec command_n, (error, stdout_n) ->
-         array_n = stdout_n.split(/\D\d+\D/)
+         array_n = stdout_n.split(/\n/)
          ttl_n = 0
          for i in [0..array_n.length-1]
-           ttl_n = array_n[i] + ttl_n
+           ttl_n = array_n[i] + ttl_n if array_n[i].match(/\d+/)
          msg.send error if error?
          msg.send "Nina: #{array_n}" if stdout_n?
          @exec = require('child_process').exec
