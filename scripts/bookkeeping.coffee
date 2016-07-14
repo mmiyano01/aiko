@@ -30,7 +30,7 @@ module.exports = (robot) ->
      d = new Date
      year = d.getFullYear()
 
-     command_m = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} Masato"
+     command = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} Masato"
      @exec command, (error, stdout) ->
        ttl_m = stdout.replace(/\s/g, "");
        @exec = require('child_process').exec
@@ -38,7 +38,7 @@ module.exports = (robot) ->
        msg.send error if error?
        msg.send "Masato: #{ttl_m}" if stdout?
     
-       command_n = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} Nina"
+       command = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} Nina"
        @exec command, (error, stdout) ->
          ttl_n = stdout.replace(/\s/g, "");
          @exec = require('child_process').exec
@@ -46,7 +46,7 @@ module.exports = (robot) ->
          msg.send error if error?
          msg.send "Nina: #{ttl_n}" if stdout?
 
-         command_e = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} even"
+         command = "sh scripts/shell/show_expense.sh #{t_month} #{t_year} even"
          @exec command, (error, stdout) ->
            ttl_e = stdout.replace(/\s/g, "");
            @exec = require('child_process').exec
