@@ -17,7 +17,7 @@ module.exports = (robot) ->
         msg.send error if error?
         msg.send "expense record added! ...ouch!" if stdout?
 
- robot.hear /show expense/i, (msg) ->
+ robot.hear /show expense (.*) (.*)/i, (msg) ->
    @exec = require('child_process').exec
    command = "sh scripts/shell/auth.sh #{msg.message.user.name}"
    @exec command, (error, stdout) ->
@@ -25,7 +25,12 @@ module.exports = (robot) ->
      msg.send "auth failed. try again" if error?
      msg.send "ok, #{reporter}" if stdout?
      @exec = require('child_process').exec
-     command = "sh scripts/shell/show_expense.sh"
+     t_month = msg.match[1]
+     t_month = msg.match[2]
+     d = new Date
+     year = d.getFullYear()
+
+     command = "sh scripts/shell/show_expense.sh #{t_month} #{year}"
      @exec command, (error, stdout) ->
        msg.send error if error?
        msg.send stdout if stdout?
