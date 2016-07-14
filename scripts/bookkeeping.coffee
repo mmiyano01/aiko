@@ -37,7 +37,7 @@ module.exports = (robot) ->
        for i in [0..array_m.length-1]
          ttl_m = array_m[i] + ttl_m
        msg.send error if error?
-       msg.send "Masato: #{ttl_m}" if stdout_m?
+       msg.send "Masato: #{stdout_m}" if stdout_m?
        @exec = require('child_process').exec
     
        command_n = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Nina Masato"
@@ -47,5 +47,5 @@ module.exports = (robot) ->
          for i in [0..array_n.length-1]
            ttl_n = array_n[i] + ttl_n
          msg.send error if error?
-         msg.send "Nina: #{ttl_n}" if stdout_n?
+         msg.send "Nina: #{stdout_n}" if stdout_n?
          @exec = require('child_process').exec
