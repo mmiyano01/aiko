@@ -30,22 +30,24 @@ module.exports = (robot) ->
      d = new Date
      year = d.getFullYear()
 
-     command_m = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Masato"
+     command_m = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Masato Nina"
      @exec command_m, (error, stdout_m) ->
-       ttl_m = stdout_m.replace(/\s/g, "");
+       array_m = stdout_m.split(/\r\n|\r|\n/)
+       ttl_m = 0
+       for (i = 0; i < array_m.length; i++) {
+         ttl_m = array_m[i] + ttl_m
+       }
        msg.send error if error?
        msg.send "Masato: #{ttl_m}" if stdout_m?
        @exec = require('child_process').exec
     
-       command_n = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Nina"
+       command_n = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Nina Masato"
        @exec command_n, (error, stdout_n) ->
-         ttl_n = stdout_n.replace(/\s/g, "");
+         array_n = stdout_n.split(/\r\n|\r|\n/)
+         ttl_n = 0
+         for (i = 0; i < array_n.length; i++) {
+           ttl_n = array_n[i] + ttl_n
+         }
          msg.send error if error?
          msg.send "Nina: #{ttl_n}" if stdout_n?
          @exec = require('child_process').exec
-         
-         command_e = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} even"
-         @exec command_e, (error, stdout_e) ->
-           ttl_e = stdout_e.replace(/\s/g, "");
-           msg.send error if error?
-           msg.send "Even: #{ttl_e}" if stdout_e?
