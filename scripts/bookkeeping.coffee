@@ -26,11 +26,11 @@ module.exports = (robot) ->
      msg.send "ok, #{reporter}" if stdout?
      @exec = require('child_process').exec
      t_month = msg.match[1]
-     t_month = msg.match[2]
+     t_year = msg.match[2]
      d = new Date
      year = d.getFullYear()
 
-     command = "sh scripts/shell/show_expense.sh #{t_month} #{year}"
+     command = "sh scripts/shell/show_expense.sh #{t_month} #{t_year}"
      @exec command, (error, stdout) ->
        msg.send error if error?
        msg.send stdout if stdout?
