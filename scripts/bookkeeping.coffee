@@ -41,7 +41,7 @@ module.exports = (robot) ->
        @exec command_n, (error, stdout_n) ->
          ttl_n = stdout_n.replace(/\s/g, "");
          msg.send error if error?
-         msg.send "Nina: #{array_n}" if stdout_n?
+         msg.send "Nina: #{ttl_n}" if stdout_n?
          #@exec = require('child_process').exec
          #ttl_gap = ttl_n.to_i - ttl_m.to_i
          #if ttl_gap > 0
