@@ -1,0 +1,5 @@
+add expense MM YYYY "purpose"
+show expense MM YYYY
+show table expense MM YYYY
+weather [today/tomorrow]
+table topic [general]
