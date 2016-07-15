@@ -1,4 +1,5 @@
 [
+  "hubot-weather-ja",
   "hubot-diagnostics",
   "hubot-help",
   "hubot-heroku-keepalive",
