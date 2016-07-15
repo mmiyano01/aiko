@@ -32,20 +32,23 @@ module.exports = (robot) ->
 
      command_m = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Masato Nina"
      @exec command_m, (error, stdout_m) ->
-       array_m = stdout_m.split(/\n/).replace(/^\s+|\s+$/g, "");
-       ttl_m = 0
-       for i in [0..array_m.length-1]
-         ttl_m = array_m[i].to_i + ttl_m
+       ttl_m = stdout_m.replace(/\s/g, "");
        msg.send error if error?
-       msg.send "Masato: #{array_m}" if stdout_m?
-       @exec = require('child_process').exec
-    
+       msg.send "Masato: #{ttl_m}" if stdout_m?
+       #@exec = require('child_process').exec
+
        command_n = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Nina Masato"
        @exec command_n, (error, stdout_n) ->
-         array_n = stdout_n.split(/\n/).replace(/^\s+|\s+$/g, "");
-         ttl_n = 0
-         for i in [0..array_n.length-1]
-           ttl_n = array_n[i].to_i + ttl_n
+         ttl_n = stdout_n.replace(/\s/g, "");
          msg.send error if error?
          msg.send "Nina: #{array_n}" if stdout_n?
-         @exec = require('child_process').exec
+         #@exec = require('child_process').exec
+         ttl_gap = ttl_n.to_i - ttl_m.to_i
+         if ttl_gap > 0
+           msg.send "Nina owes Masato #{ttl_gap}"
+         else if ttl_gap < 0
+           msg.send "Masato owes Nina #{ttl_gap * -1}"
+         else if ttl_gap == 0
+           msg.send "No money moevment"
+         else
+           msg.send "Something went wrong"
