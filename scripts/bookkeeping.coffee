@@ -47,10 +47,13 @@ module.exports = (robot) ->
          #@exec = require('child_process').exec
          ttl_gap = ttl_n - ttl_m
          if ttl_gap > 0
-           msg.send "Masato: #{ttl_m}¥n" + "Nina: #{ttl_n}¥n" + "Nina owes Masato #{ttl_gap}"
+           msg.send "Masato: #{ttl_m}  Nina: #{ttl_n}
+                     Nina owes Masato #{ttl_gap}"
          else if ttl_gap < 0
-           msg.send "Masato: #{ttl_m}¥n" + "Nina: #{ttl_n}¥n" + "Masato owes Nina #{ttl_gap * -1}"
+           msg.send "Masato: #{ttl_m}  Nina: #{ttl_n}
+                     Masato owes Nina #{ttl_gap * -1}"
          else if ttl_gap == 0
-           msg.send "Masato: #{ttl_m}¥n" + "Nina: #{ttl_n}¥n" + "No money moevment"
+           msg.send "Masato: #{ttl_m}  Nina: #{ttl_n}
+                     No money moevment"
          else
            msg.send "Something went wrong"
