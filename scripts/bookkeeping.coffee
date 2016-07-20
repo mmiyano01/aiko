@@ -12,7 +12,7 @@ module.exports = (robot) ->
       msg.send "auth failed. try again" if error?
       #msg.send "ok, #{reporter}" if stdout?
       @exec = require('child_process').exec
-      command = "sh scripts/shell/add_expense.sh #{reporter} #{msg.match[1]} #{msg.match[2]} #{msg.match[3]}"
+      command = "sh scripts/shell/bookkeeping/add_expense.sh #{reporter} #{msg.match[1]} #{msg.match[2]} #{msg.match[3]}"
       @exec command, (error, stdout) ->
         msg.send error if error?
         msg.send "expense record added! ...ouch!" if stdout?
@@ -30,7 +30,7 @@ module.exports = (robot) ->
      d = new Date
      year = d.getFullYear()
 
-     command_m = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Masato Nina"
+     command_m = "sh scripts/shell/bookkeeping/calc_expense.sh #{t_month} #{t_year} Masato Nina"
      @exec command_m, (error, stdout_m) ->
        ttl_m = stdout_m.replace(/\s/g, "");
        ttl_m = parseInt(ttl_m,10)
@@ -38,7 +38,7 @@ module.exports = (robot) ->
        #msg.send "Masato: #{ttl_m}" if stdout_m?
        @exec = require('child_process').exec
 
-       command_n = "sh scripts/shell/calc_expense/calc_expense.sh #{t_month} #{t_year} Nina Masato"
+       command_n = "sh scripts/shell/bookkeeping/calc_expense.sh #{t_month} #{t_year} Nina Masato"
        @exec command_n, (error, stdout_n) ->
          ttl_n = stdout_n.replace(/\s/g, "");
          ttl_n = parseInt(ttl_n,10)
@@ -70,8 +70,21 @@ module.exports = (robot) ->
       t_year = msg.match[2]
       d = new Date
       year = d.getFullYear()
-      command = "sh scripts/shell/calc_expense/table_expense.sh #{t_month} #{t_year}"
+      command = "sh scripts/shell/bookkeeping/table_expense.sh #{t_month} #{t_year}"
       @exec command, (error, stdout) ->
         msg.send "Something went wrong" if error?
         msg.send "#{t_year}-#{t_month}
                   #{stdout}" if stdout?
+
+  robot.hear /delete previous expense/i, (msg) ->
+    @exec = require('child_process').exec
+    command = "sh scripts/shell/auth.sh #{msg.message.user.name}"
+    @exec command, (error, stdout) ->
+      reporter = stdout.replace(/\s/g, "");
+      msg.send "auth failed. try again" if error?
+      #msg.send "ok, #{reporter}" if stdout?
+      @exec = require('child_process').exec
+      command = "sh scripts/shell/bookkeeping/delete_previous.sh #{reporter}"
+      @exec command, (error, stdout) ->
+        msg.send error if error?
+        msg.send "expense record deleted! lucky!" if stdout?
