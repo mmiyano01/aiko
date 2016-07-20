@@ -1,4 +1,6 @@
-add expense MM YYYY "purpose"
+Aiko 天気 "地名"
+add expense "amount" [Masato/Nina/even] "purpose"
+delete previous expense
 show expense MM YYYY
 show table expense MM YYYY
 weather [today/tomorrow]
